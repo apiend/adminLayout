@@ -26,9 +26,7 @@ requirejs.config({
     }
 });
 
-// require(["lib/element-ui@2.4.9"], function (ele) {
-//     console.log(ele);
-// })
+ 
 
 require(["Vue", "vue-router", "common" ], function (Vue, VueRouter, com) {
     Vue.use(VueRouter);

@@ -1,0 +1,5 @@
+
+{
+    "easysass.targetDir": "./src/static/css",
+    "easysass.excludeRegex": "^(?!app.scss).+",
+}

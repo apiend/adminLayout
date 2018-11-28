@@ -9,9 +9,12 @@
 
 
 <script>
+ var name = "diogoxiang"
+ 
+
 define(["Vue"], function(Vue) {
   "use strict";
-
+ 
   return Vue.component("v-home", {
     template: template,
     data: function() {
@@ -21,6 +24,7 @@ define(["Vue"], function(Vue) {
     },
     mounted: function() {
       this.refresh();
+      console.log(name);
     },
     methods: {
       refresh: function() {

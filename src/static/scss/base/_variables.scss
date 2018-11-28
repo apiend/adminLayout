@@ -1,0 +1,93 @@
+@charset "utf-8";
+
+/* Font
+-------------------------- */
+$--font-path: 'fonts' !default;
+$--font-size-base: 14px !default;
+$--font-size-small: 13px !default;
+$--font-size-large: 18px !default;
+$--font-color-disabled-base: #bbb !default;
+$--font-weight-primary: 500 !default;
+$--font-line-height-primary: 24px !default;
+
+
+/* --------------------------
+	Custom variables
+----------------------------*/
+$text-light: #949CB1;
+$text-base: #676B7F;
+$text-bold: #454850;
+
+$bg: #F8F9FD;
+$border-color: #E5E6EB;
+$border-light-color: #E5E5EB;
+$card-header-footer-color: #EFF3FA;
+
+// Colors
+$body-background-color: $bg;
+$primary: #4474E4;
+$dark: #1D2C4C;
+
+$radius-large: 3px;
+
+// Text
+$font-size-base: 1rem !default;
+$text: $text-base;
+
+$h1-font-size: $font-size-base * 2.5 !default;
+$h2-font-size: $font-size-base * 2 !default;
+$h3-font-size: $font-size-base * 1.75 !default;
+$h4-font-size: $font-size-base * 1.5 !default;
+$h5-font-size: $font-size-base * 1.25 !default;
+$h6-font-size: $font-size-base !default;
+// fonts type
+$type-300: 300;
+$type-400: 400;
+$type-500: 500;
+$type-600: 600;
+$type-700: 700;
+
+// $defaul-shadow: none;
+$default-shadow: 0 0 0 1px rgba(63, 63, 68, 0.03),
+0 1px 3px 0 rgba(63, 63, 68, 0.05);
+$default-border: 1px solid $border-color;
+
+// Box
+$box-shadow: $default-shadow;
+$box-card-padding: 1.5rem;
+
+// Card
+$card-shadow: $default-shadow;
+
+// Form
+// Input
+$input-color: $text-bold;
+$input-shadow: none;
+$input-hover-color: $text-bold;
+$input-hover-border-color: $border-color;
+$input-focus-color: $text-bold;
+$input-border-color: $border-color;
+$input-focus-box-shadow-size: 0;
+$input-focus-box-shadow-color: transparent;
+$input-focus-border-color: $primary;
+
+// Button 
+$button-padding-vertical: 0.5em;
+
+// Navbar
+$navbar-dropdown-item-hover-background-color: transparent;
+$navbar-dropdown-item-hover-color: $primary;
+
+// Form
+$help-size: 0.85rem;
+
+// Generic
+$link: $primary;
+$link-hover: darken($link, 10%);
+
+// Menu
+$menu-item-color: $text-base;
+$menu-item-hover-color: $link-hover;
+$menu-item-hover-background-color: transparent;
+
+
