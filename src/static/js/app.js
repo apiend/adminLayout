@@ -55,7 +55,7 @@ require(["Vue", "vue-router", "common" ], function (Vue, VueRouter, com) {
             },
             {
                 path: "/home",
-                component: asyncComp("v@!../../components/home")
+                component: asyncComp("v@!../../views/home/index")
             },
             {
                 path: "/inner",

@@ -1,0 +1,11 @@
+{
+  "name": "adminLayout",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/apiend/adminLayout.git",
+  "author": "Diogoxiang <a233894432@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bulma": "^0.7.2"
+  }
+}
