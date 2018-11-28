@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Require Vue</title>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.2/css/bulma.min.css" />
+    <!-- <link rel="stylesheet" href="./static/css/element-ui@2.4.9.css" /> -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- css link -->
+    <!-- <link rel="stylesheet" href="static/js/libui/muse-ui.css"> -->
+    <!-- import Vue before Element -->
+    <script src="static/js/lib/vue@2.5.17.js"></script>
+    <!-- import JavaScript  elementUI-->
+    <script src="static/js/lib/element-ui@2.4.11.js"></script>
+    <!-- <script src="static/js/libui/muse-ui@3.0.1.js"></script> -->
+    
+    <style>
+        .component-fade-enter-active,
+        .component-fade-leave-active {
+            transition: opacity .3s ease;
+        }
+
+        .component-fade-enter,
+        .component-fade-leave-to
+        /* .component-fade-leave-active for <2.1.8 */
+        {
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="container is-fluid">
+        <div class="tabs">
+            <ul>
+                <li>Started at: {{started}}</li>
+                <router-link tag="li" active-class="is-active" to="/home"><a>Home </a></router-link>
+                <router-link tag="li" active-class="is-active" to="/inner"><a>Inner Template</a></router-link>
+                <router-link tag="li" active-class="is-active" to="/html"><a>HTML component</a></router-link>
+                <router-link tag="li" active-class="is-active" to="/vue"><a>Vue component </a></router-link>
+                <router-link tag="li" active-class="is-active" to="/async"><a>Async loaded </a></router-link>
+                <router-link tag="li" active-class="is-active" to="/ele"><a>doEle</a></router-link>
+                <router-link tag="li" active-class="is-active" to="/eleFrom"><a>doeleFrom</a></router-link>
+                    <!-- <router-link tag="li" active-class="is-active" to="/mu"><a>mu </a></router-link> -->
+            </ul>
+        </div>
+        <div class="column is-half">
+            <transition name="component-fade" mode="out-in">
+                <keep-alive>
+                    <router-view></router-view>
+                </keep-alive>
+            </transition>
+        </div>
+
+
+      
+    </div>
+    <script data-main="./static/js/app" src="./static/js/lib/require@2.3.3.js"></script>
+</body>
+
+</html>
