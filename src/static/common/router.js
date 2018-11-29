@@ -20,6 +20,10 @@
                  component: asyncComp("v@!../views/home/index")
              },
              {
+                path:"/login",
+                component:asyncComp("v@!../views/login/index")
+             },
+             {
                  path: "/inner",
                  component: asyncComp("v@!../components/inner_template")
              },
