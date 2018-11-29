@@ -16,8 +16,14 @@
                  redirect: "/home"
              },
              {
-                 path: "/home",
-                 component: asyncComp("v@!../views/home/index")
+                path: "/home",
+                component: asyncComp("v@!../views/layout/layout"),
+                redirect: '/home/index',
+                 children: [{
+                     path: 'index', 
+                     name: 'index',
+                     component: asyncComp("v@!../views/home/index")
+                 }]
              },
              {
                 path:"/login",

@@ -5,7 +5,7 @@
                 <div class="column is-4 is-offset-4">
                      <h3 class="title has-text-grey">云数据监控平台</h3>
                      <div class="box is-half">
-                        
+
                             <div class="field">
                                 <div class="control">
                                     <input class="input" type="txt" v-model="username"  placeholder="请输入帐号" autofocus="">
@@ -76,16 +76,7 @@ define(['Vue'], function(Vue) {
 </script>
 
 
+
 <style>
-html, body {
-  font-family: 'Open Sans', serif;
-  font-size: 16px;
-  line-height: 1.5;
-  height: 100%;
-  background: #ECF0F3;
-}
-.navbar {
-  border-top: 4px solid #276cda;
-  margin-bottom: 1rem;
-}
+ /* 这里只写这个模块所用的 css */
 </style>

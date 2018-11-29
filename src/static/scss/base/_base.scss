@@ -4,6 +4,7 @@
 html,
 body {
     height: 100%;
+    background: #ECF0F3;
 }
 body {
     font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', SimSun, sans-serif;
@@ -59,12 +60,4 @@ strong {
     padding: 2.3rem;
 }
 
-.menu {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-
-    #wrapper {
-        flex: 1;
-    }
-}
+ 

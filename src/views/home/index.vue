@@ -1,20 +1,15 @@
 <template>
-  <div class="container">
-    <div class="notification">
-      This container is
-      <strong>centered</strong> on desktop.
-    </div>
+  <div class="hero is-fullheight">
+     el-container
+     {{now}}
   </div>
 </template>
 
 
 <script>
-
- 
-
 define(["Vue"], function(Vue) {
   "use strict";
- 
+
   return Vue.component("v-home", {
     template: template,
     data: function() {
@@ -24,7 +19,6 @@ define(["Vue"], function(Vue) {
     },
     mounted: function() {
       this.refresh();
-      
     },
     methods: {
       refresh: function() {
@@ -33,6 +27,5 @@ define(["Vue"], function(Vue) {
       }
     }
   });
-  
 });
 </script>
