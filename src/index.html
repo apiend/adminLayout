@@ -16,20 +16,11 @@
     <!-- import JavaScript  elementUI-->
     <script src="static/js/lib/element-ui@2.4.11.js"></script>
     <!-- <script src="static/js/libui/muse-ui@3.0.1.js"></script> -->
-    
-    <style>
-        .component-fade-enter-active,
-        .component-fade-leave-active {
-            transition: opacity .3s ease;
-        }
+    <!-- 低版本的chrome -->
+    <!-- <script src="static/js/lib/polyfill.min.js"></script> -->
 
-        .component-fade-enter,
-        .component-fade-leave-to
-        /* .component-fade-leave-active for <2.1.8 */
-        {
-            opacity: 0;
-        }
-    </style>
+    <!-- <script type="text/babel"> 
+    </script> -->
 </head>
 
 <body>
@@ -56,7 +47,7 @@
             </transition>
         </div>
     </div>
-    <script data-main="./static/js/app" src="./static/js/lib/require@2.3.6.min.js"></script>
+    <script data-main="app" src="./static/js/lib/require@2.3.6.min.js"></script>
 </body>
 
 </html>

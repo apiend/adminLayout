@@ -1,5 +1,6 @@
 
 {
+    "easysass.compileAfterSave": true,
     "easysass.targetDir": "./src/static/css",
     "easysass.excludeRegex": "^(?!app.scss).+",
 }
