@@ -52,7 +52,6 @@ require(["Vue", "vue-router","uRouter","common"], function (Vue, VueRouter,uRout
     
 
     //挂载到 WINDOWS
-
     window.tvue = tvue
 
 });

@@ -9,7 +9,7 @@
 
 
 <script>
- var name = "diogoxiang"
+
  
 
 define(["Vue"], function(Vue) {
@@ -24,7 +24,7 @@ define(["Vue"], function(Vue) {
     },
     mounted: function() {
       this.refresh();
-      console.log(name);
+      
     },
     methods: {
       refresh: function() {
