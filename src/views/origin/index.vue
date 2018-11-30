@@ -7,7 +7,7 @@
           <nav class="breadcrumb" aria-label="breadcrumbs">
             <ul>
               <li>
-                <a href="#">项目管理</a>
+                <a href="#">数据源管理</a>
               </li>
             </ul>
           </nav>

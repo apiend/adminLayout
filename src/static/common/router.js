@@ -21,8 +21,18 @@
                 redirect: '/home/index',
                  children: [{
                      path: 'index', 
-                     name: 'index',
+                     name: 'homeIndex',
                      component: asyncComp("v@!../views/home/index")
+                 }]
+             },
+             {
+                 path: "/origin",
+                 component: asyncComp("v@!../views/layout/layout"),
+                 redirect: '/origin/index',
+                 children: [{
+                     path: 'index',
+                     name: 'originIndex',
+                     component: asyncComp("v@!../views/origin/index")
                  }]
              },
              {

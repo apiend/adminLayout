@@ -9,12 +9,10 @@
              云数据监控平台
           </div>
           <ul class="menu-list">
-            <li>
-              <a class="is-active">项目管理</a>
-            </li>
-           <li>
-              <a>数据源管理</a>
-            </li>
+            
+           <router-link tag="li" active-class="is-active" to="/home"><a>项目管理 </a></router-link>
+           <router-link tag="li" active-class="is-active" to="/origin"><a>数据源管理 </a></router-link>
+            
             <li>
               <a>监控列表</a>
             </li>
