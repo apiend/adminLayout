@@ -17,8 +17,9 @@ require-js 后台模板
     - js
         - lib     引用第三方的库
   - views         页面文件
-    - login
-    - home
+    - login       登录页面
+    - home        主页
+    - layout     框架文件
   - index.html 入口文件
   - app.js     入口配置文件
 
