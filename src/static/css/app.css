@@ -61,11 +61,11 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .border-top {
-  border-top: 1px solid #E5E6EB;
+  border-top: 1px solid orangered;
 }
 
 .border-bottom {
-  border-bottom: 1px solid #E5E6EB;
+  border-bottom: 1px solid orangered;
 }
 
 .dd {
@@ -141,7 +141,6 @@ strong {
   background-color: #E9EEF3;
   color: #333;
   text-align: center;
-  line-height: 160px;
 }
 
 body > .el-container {
@@ -159,6 +158,18 @@ body > .el-container {
 
 .box {
   margin-top: 5rem;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
 }
 
 .aside_logo {
@@ -184,4 +195,62 @@ body > .el-container {
   color: #b6b4c2;
   text-align: left;
   padding-left: 20px;
+}
+
+.main-header {
+  height: 40px;
+  line-height: 40px;
+}
+
+.main-header .breadcrumb {
+  font-size: 1.3rem;
+  height: 40px;
+  line-height: 1;
+}
+
+.main-header .breadcrumb ul {
+  height: 40px;
+  line-height: 1;
+}
+
+.main-header .breadcrumb ul > li {
+  height: 100%;
+}
+
+.main-header .breadcrumb a {
+  color: orangered;
+  border-left: 4px solid orangered;
+  line-height: 26px;
+  text-indent: 10px;
+}
+
+.main-filter {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: 40px;
+  line-height: 40px;
+}
+
+.main-content {
+  width: 100%;
+  line-height: 30px;
+}
+
+.main-content .is-bordered thead {
+  background: #2d2f44;
+}
+
+.main-content .is-bordered thead th {
+  max-width: 40%;
+  border-width: 0px;
+  color: #b6b4c2;
+}
+
+.main-content .is-bordered tbody td {
+  max-width: 250px;
+}
+
+.pageDiv {
+  margin: 10px 0;
+  text-align: right;
 }

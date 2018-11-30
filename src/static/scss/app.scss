@@ -16,6 +16,20 @@
 
 
 
+// common
+.text-left {
+    text-align: left;
+
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
 // aside 
 .aside_logo {
     width: 100%;
@@ -29,18 +43,81 @@
 }
 
 .menu-list {
-     
-    li{
+
+    li {
         line-height: 28px;
-      
+
         &>ul li {
             padding-left: 0;
         }
     }
-     
+
     a {
         color: #b6b4c2;
         text-align: left;
         padding-left: 20px;
     }
+}
+
+// main 
+.main-header {
+    height: 40px;
+    line-height: 40px;
+
+    .breadcrumb {
+        font-size: 1.3rem;
+        height: 40px;
+        line-height: 1;
+
+        ul {
+            height: 40px;
+            line-height: 1;
+
+            &>li {
+                height: 100%
+            }
+        }
+
+        a {
+            color: $border-color;
+            border-left: 4px solid $border-color;
+            line-height: 26px;
+            text-indent: 10px;
+        }
+
+    }
+}
+
+.main-filter {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 40px;
+    line-height: 40px;
+}
+
+.main-content {
+    width: 100%;
+    line-height: 30px;
+
+    .is-bordered {
+        thead {
+            background: $bar-color;
+            th {
+                max-width: 40%;
+                border-width: 0px;
+                color: #b6b4c2;
+            }
+        }
+        tbody{
+            td{
+                 max-width: 250px;
+            }
+        }
+    }
+
+}
+
+.pageDiv {
+    margin: 10px 0;
+    text-align: right
 }
