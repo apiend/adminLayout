@@ -52,9 +52,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr v-for="item in tableData">
             <th>16</th>
-            <td>38</td>
+            <td>{{item.name}}</td>
             <td>11</td>
             <td>9</td>
             <td>
@@ -129,7 +129,7 @@
 
 
 <script>
-define(["Vue"], function(Vue) {
+define(["Vue","common","api"], function(Vue,com,api) {
   "use strict";
 
   return Vue.component("v-home", {
@@ -167,6 +167,12 @@ define(["Vue"], function(Vue) {
     },
     mounted: function() {
       this.refresh();
+      
+      api.doLogin().then(res=>{
+        console.log(res);
+      }).catch(error=>{
+        console.log(error);
+      })
     },
     methods: {
       refresh: function() {

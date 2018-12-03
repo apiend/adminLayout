@@ -2,11 +2,21 @@
  * API 请求接口的配置
  * 
  */
-define('api',function (require, exports, module) {
+define('api', ["apiConfig"], function (service) {
     //Put traditional CommonJS module content here
-    console.log("object");
+    
+      
+    console.log(service);
+
     var api = {
-        version:"0001"
+        version:"0001",
+        doLogin:function(data){
+            return service({
+                url:"/app/login.do",
+                 method: 'post',
+                data: data
+            })
+        }
     }
 
      console.log(apihost);
