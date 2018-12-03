@@ -1,4 +1,4 @@
-define("apiConfig",["Vue","axios"], function(Vue,axios) {
+define(["Vue","axios"], function(Vue,axios) {
     'use strict';
     // 默认配置参数
     axios.defaults.baseURL = apihost;

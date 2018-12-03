@@ -6,6 +6,13 @@
  */
 requirejs.config({
     baseUrl: './static/',
+    config: {
+        es6: {
+            resolveModuleSource: function (source) {
+                return 'es6!' + source;
+            }
+        }
+    },
     paths: {
         // lib
         "Vue": "js/lib/vue@2.5.17",
@@ -18,8 +25,12 @@ requirejs.config({
         "common": "common/common",
         "apiConfig":"common/apiConfig",
         "api": "common/api",
-        "uRouter": "common/router"
-        //custom 
+        "uRouter": "common/router",
+        //custom    
+
+        // es6 module
+        es6: 'js/lib/es6',
+        babel: 'js/lib/babel-5.8.22.min'
     },
     shim: {
         "Vue": {

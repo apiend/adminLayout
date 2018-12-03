@@ -23,6 +23,14 @@ require-js 后台模板
   - index.html 入口文件
   - app.js     入口配置文件
 
+### es6 模块的引入
+
+```javascript
+  define(['es6!your-es6-module'], function(module) {
+    // ...
+  });
+```
+
 #### 模板更新说明 
 
 各组件的样式, 代码参数  :
