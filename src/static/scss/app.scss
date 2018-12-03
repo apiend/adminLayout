@@ -18,6 +18,14 @@
 
 // common
 
+.pull-right {
+    float: right;
+}
+
+.pull-left {
+    float: left;
+}
+
 .is-active {
 
     a {
@@ -28,14 +36,15 @@
 
 }
 
-.mt10{
+.mt10 {
     margin-top: 10px
 }
-.mb10{
-    margin-bottom:10px;
+
+.mb10 {
+    margin-bottom: 10px;
 }
 
-.lab-tip{
+.lab-tip {
     line-height: 40px;
     height: 40px;
 }
@@ -54,21 +63,29 @@
 }
 
 .menu-list {
-
     li {
         line-height: 28px;
-     
 
-        &>ul li {
-            padding-left: 0;
+        a {
+            color: #b6b4c2;
+            text-align: left;
+            padding-left: 20px;
+
+            i {
+                line-height: 28px;
+            }
+        }
+
+        ul {
+
+            //    display: none; 
+            li {
+                padding-left: 0;
+            }
         }
     }
 
-    a {
-        color: #b6b4c2;
-        text-align: left;
-        padding-left: 20px;
-    }
+
 }
 
 // main 

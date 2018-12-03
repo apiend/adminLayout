@@ -172,6 +172,14 @@ body > .el-container {
   margin-top: 5rem;
 }
 
+.pull-right {
+  float: right;
+}
+
+.pull-left {
+  float: left;
+}
+
 .is-active {
   background: white;
 }
@@ -208,14 +216,18 @@ body > .el-container {
   line-height: 28px;
 }
 
-.menu-list li > ul li {
-  padding-left: 0;
-}
-
-.menu-list a {
+.menu-list li a {
   color: #b6b4c2;
   text-align: left;
   padding-left: 20px;
+}
+
+.menu-list li a i {
+  line-height: 28px;
+}
+
+.menu-list li ul li {
+  padding-left: 0;
 }
 
 .main-header {

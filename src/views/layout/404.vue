@@ -12,10 +12,10 @@
     var result = {
         template: template,
         data: function() {
-            var time = new Date();
-            return {
-                loaded: time
-            };
+        var time = new Date();
+        return {
+            loaded: time
+        };
         }
     };
  

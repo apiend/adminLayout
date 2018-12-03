@@ -12,7 +12,6 @@
             </ul>
           </nav>
         </el-col>
-
         <el-col :span="8" :offset="4" class="text-right">
           <el-button type="primary" icon="el-icon-news el-icon-right" size="medium" @click="newCreate">新建项目</el-button>
         </el-col>
@@ -37,21 +36,14 @@
         <thead>
           <tr>
             <th>序号</th>
-            <th>
-              项目名称
-            </th>
-            <th>
-               运行状态
-            </th>
-            <th>
-               操作状态
-            </th>
-            <th>
-              操作
-            </th>
+            <th>项目名称</th>
+            <th>运行状态</th>
+            <th>操作状态</th>
+            <th>操作</th>
           </tr>
         </thead>
         <tbody>
+
           <tr v-for="item in tableData">
             <th>16</th>
             <td>{{item.name}}</td>
@@ -65,6 +57,8 @@
                 <el-button type="danger" size="mini">开启</el-button>
             </td>
           </tr>
+
+
           <tr>
             <th>16</th>
             <td>38</td>
@@ -129,8 +123,10 @@
 
 
 <script>
-define(["Vue","common","api"], function(Vue,com,api) {
+define(["Vue","common","api","es6!components/dioui/from/index"], function(Vue,com,api,dfrom) {
   "use strict";
+
+  console.log(dfrom);
 
   return Vue.component("v-home", {
     template: template,
@@ -167,6 +163,7 @@ define(["Vue","common","api"], function(Vue,com,api) {
     },
     mounted: function() {
       this.refresh();
+      
       
       api.doLogin().then(res=>{
         console.log(res);

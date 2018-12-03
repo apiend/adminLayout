@@ -2,7 +2,7 @@
     <div>
 
 
-        报警 日志中心
+        报警 群组中心
     </div>
 
 
@@ -26,7 +26,7 @@ define(["Vue", "common", "api"], function(Vue, com, api) {
 
 
 
-    Vue.component("vue-task", result);
+    Vue.component("vue-group", result);
 
     return result;
 

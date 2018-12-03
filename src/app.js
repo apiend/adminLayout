@@ -30,7 +30,7 @@ requirejs.config({
 
         // es6 module
         es6: 'js/lib/es6',
-        babel: 'js/lib/babel-5.8.22.min'
+        babel: 'js/lib/babel-5.8.34.min'
     },
     shim: {
         "Vue": {
