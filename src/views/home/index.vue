@@ -14,7 +14,7 @@
         </el-col>
 
         <el-col :span="8" :offset="4" class="text-right">
-          <el-button type="primary" icon="el-icon-news el-icon-right" size="medium">新建项目</el-button>
+          <el-button type="primary" icon="el-icon-news el-icon-right" size="medium" @click="newCreate">新建项目</el-button>
         </el-col>
       </el-row>
     </div>
@@ -83,7 +83,47 @@
         :total="1000">
       </el-pagination>
     </div>
+
+    <!-- dialog  newCreate -->
     
+    <el-dialog
+        title="新建项目"
+        :visible.sync="createVisible"
+        width="50%"
+        :before-close="createClose">
+
+         <el-row>
+           <el-col>
+             <el-col :span="4" class="lab-tip">
+              项目名称:  
+             </el-col> 
+             <el-col :span="16">
+               <el-input placeholder="请输入项目名称" v-model="projectName"></el-input>
+             </el-col>
+             
+           </el-col>
+           <el-col class="mt10">
+
+             <el-col :span="4" class="lab-tip">
+             项目地址:
+             </el-col> 
+             <el-col :span="16">
+                <el-input placeholder="请输入项目地址" v-model="projectHost"></el-input>
+             </el-col>
+             
+          
+           </el-col>
+
+         </el-row>
+
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="createVisible = false">取 消</el-button>
+          <el-button type="primary" @click="createVisible = false">确 定</el-button>
+        </span>
+    </el-dialog>
+
+    <!-- newCreate end -->
+
   </div>
 </template>
 
@@ -97,7 +137,10 @@ define(["Vue"], function(Vue) {
     data: function() {
       return {
         now: new Date(),
+        createVisible:false,
         searchTxt: "",
+        projectName:"",
+        projectHost:"", 
         tableData: [
           {
             date: "2016-05-02",
@@ -129,6 +172,20 @@ define(["Vue"], function(Vue) {
       refresh: function() {
         this.now = new Date();
         setTimeout(this.refresh, 2000);
+      },
+      /**
+       * 新建项目
+       */
+      newCreate:function(){
+        
+        this.createVisible = true;
+
+      },
+      /**
+       * 关闭新建弹窗
+       */
+      createClose:function (){
+        this.createVisible = false;
       },
       openDialog:function(){
         // console.log(this.$);

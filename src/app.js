@@ -1,4 +1,3 @@
-
 /**
  * app.js
  * 入口文档
@@ -16,13 +15,21 @@ requirejs.config({
 
         // --custom
         "common": "common/common",
-        "api":"common/api",
-        "uRouter":"common/router"
+        "api": "common/api",
+        "uRouter": "common/router"
         //custom 
     },
     shim: {
         "Vue": {
-            "exports": "Vue"
+
+            exports: "Vue"
+        },
+        // 调整主要的载入顺序
+        "vue-router": {
+            deps: ["v@"]
+        },
+        "uRouter":{
+            deps: ["vue-router"]
         }
         // "ElementUI":{
         //     deps: ['Vue'],
@@ -31,25 +38,28 @@ requirejs.config({
     }
 });
 
+// api back 
+let apihost = (window.location.host.indexOf('localhost') > -1) ? "http://192.168.1.5" : "/";
 
-
-require(["Vue", "vue-router","uRouter","common"], function (Vue, VueRouter,uRouter, com) {
+require(["Vue", "vue-router", "uRouter", "common"], function (Vue, VueRouter, uRouter, com) {
     // install plugs 
     Vue.use(VueRouter);
     Vue.use(ELEMENT)
     // ------- install end
 
+
+
     console.log(com);
     console.log(uRouter);
     // 初始化
     var tvue = new Vue({
-            data: {
-                started: new Date()
-            },
-            router: uRouter,
-            // el: "#app"
-        }).$mount('#app');
-    
+        data: {
+            started: new Date()
+        },
+        router: uRouter,
+        // el: "#app"
+    }).$mount('#app');
+
 
     //挂载到 WINDOWS
     window.tvue = tvue

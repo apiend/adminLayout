@@ -25,4 +25,7 @@ require-js 后台模板
 
 #### 模板更新说明 
 
+各组件的样式, 代码参数  :
  
+http://element-cn.eleme.io/#/zh-CN/component/layout
+https://bulma.io/documentation/

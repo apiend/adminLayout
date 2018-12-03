@@ -10,12 +10,11 @@
           </div>
           <ul class="menu-list">
             
-           <router-link tag="li" active-class="is-active" to="/home"><a>项目管理 </a></router-link>
-           <router-link tag="li" active-class="is-active" to="/origin"><a>数据源管理 </a></router-link>
-            
-            <li>
-              <a>监控列表</a>
-            </li>
+           <router-link tag="li" active-class="is-active" to="/home" ><a>项目管理</a></router-link>
+           <router-link tag="li" active-class="is-active" to="/origin"><a>数据源管理</a></router-link>
+           <router-link tag="li" active-class="is-active" to="/monitor"><a>监控列表</a></router-link>
+   
+           
             <li>
               <a >报警服务</a>
               <ul>

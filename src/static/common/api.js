@@ -9,7 +9,7 @@ define('api',function (require, exports, module) {
         version:"0001"
     }
 
-     
+     console.log(apihost);
 
 
     // module.exports api
