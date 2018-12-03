@@ -11,8 +11,8 @@ require-js 后台模板
   - components   公共模块 VUE, 如 tips ,dialog
   - static       公共静态文件
     - css
+       - fonts
     - common   公用
-    - fonts
     - images
     - js
         - lib     引用第三方的库
