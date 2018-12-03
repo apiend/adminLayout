@@ -5,9 +5,13 @@
   "repository": "https://github.com/apiend/adminLayout.git",
   "author": "Diogoxiang <a233894432@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "build": "r.js -o src/build.js"
+  },
   "dependencies": {
     "babel-core": "^6.26.3",
     "babel-polyfill": "^6.26.0",
-    "bulma": "^0.7.2"
+    "bulma": "^0.7.2",
+    "requirejs": "^2.3.6"
   }
 }
