@@ -3,9 +3,11 @@
 </template>
 
 <script>
-define(["Vue"], function(Vue) {
+define(["Vue","common"], function(Vue,com) {
+    console.log(com);
   var result = {
     template: template,
+    mixins:[com.util.BusOn],
     props: {
       title: {
         type: String,
@@ -17,6 +19,11 @@ define(["Vue"], function(Vue) {
       return {
         loaded: time
       };
+    },
+    methods:{
+        busshow:function(str){
+            console.log(str);
+        }
     }
   };
   Vue.component("vue-form", result);

@@ -18,6 +18,7 @@ define("common", ["Vue","axios","api", "../static/common/util"], function (Vue, 
 
     var common ={
         version: "1.0.0",
+        util:util,
         dForm: asyncComp("v@!../static/components/dioui/from/from"),
         dTable: asyncComp("v@!../static/components/dioui/table/table")
 
