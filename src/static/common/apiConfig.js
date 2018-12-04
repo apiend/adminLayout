@@ -2,8 +2,7 @@ define(["Vue","axios"], function(Vue,axios) {
     'use strict';
     // 默认配置参数
     axios.defaults.baseURL = apihost;
-
-
+ 
     const service = axios.create({
         // baseURL: "http://192.168.1.38:8081/cloud2.yn.oms.product", // api的base_url
         // baseURL: apiurl.productService,
@@ -19,7 +18,6 @@ define(["Vue","axios"], function(Vue,axios) {
                 } else {
                     ret += encodeURIComponent(it) + '=' + '&'
                 }
-
             }
             return ret
         }]

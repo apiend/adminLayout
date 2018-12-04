@@ -1,15 +1,16 @@
 <template>
-  <div class="form">{{title}}</div>
+  <div class="container">测试table {{loaded}}</div>
 </template>
 
 <script>
-define(["Vue"], function(Vue) {
-  var result = {
+define(["require", "Vue"], function(require, Vue) {
+  "use strict";
+    var result = {
     template: template,
     props: {
       title: {
         type: String,
-        default: "Form测式类"
+        default: "tabele测式类"
       }
     },
     data: function() {
@@ -19,7 +20,7 @@ define(["Vue"], function(Vue) {
       };
     }
   };
-  Vue.component("vue-form", result);
+  Vue.component("vue-table", result);
 
   return result;
 });

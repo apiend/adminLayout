@@ -1,5 +1,7 @@
 <template>
   <div class="container">
+
+   
     <!-- main header -->
     <div class="main-header">
       <el-row>
@@ -31,6 +33,8 @@
     </div>
     <!-- main-filter end -->
     <div class="main-content">
+      <dform title="测试dform"></dform>
+      <dtable title="测试dtable"></dtable>
       <!-- main-content -->
       <table class="table is-bordered is-striped is-fullwidth">
         <thead>
@@ -117,18 +121,27 @@
     </el-dialog>
 
     <!-- newCreate end -->
-
+      
   </div>
 </template>
 
 
 <script>
-define(["Vue","common","api","es6!components/dioui/from/index"], function(Vue,com,api,dfrom) {
-  "use strict";
+ 
 
-  console.log(dfrom);
+define(["Vue","common","api" ], function(Vue,com,api) {
+  "use strict";
+  /**
+   * 引入公用模块
+   */
+   let dform = com.dForm;
+   let dtable = com.dTable;
 
   return Vue.component("v-home", {
+    components: {
+      dform,
+      dtable
+    },
     template: template,
     data: function() {
       return {
