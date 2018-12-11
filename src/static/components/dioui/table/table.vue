@@ -3,7 +3,7 @@
 </template>
 
 <script>
-define(["require", "Vue"], function(require, Vue) {
+define(["require", "Vue","common"], function(require, Vue,com) {
   "use strict";
     var result = {
     template: template,
@@ -18,6 +18,12 @@ define(["require", "Vue"], function(require, Vue) {
       return {
         loaded: time
       };
+    },
+    mounted(){
+      console.log('vue-table');
+
+      com.util.BusEmit('vue-form','busshow','name')
+
     }
   };
   Vue.component("vue-table", result);

@@ -199,6 +199,8 @@ define(["Vue","common","api" ], function(Vue,com,api) {
         // 可以调用 组件 vue-form 中的  busshow 方法  并传参 name
         com.util.BusEmit('vue-form','busshow','name')
 
+ 
+
       },
       /**
        * 关闭新建弹窗
@@ -213,6 +215,8 @@ define(["Vue","common","api" ], function(Vue,com,api) {
           message:"message"
         })
       },
+      
+      
       openAlert:function(){
         this.$alert('这是一段内容', '标题名称', {
           confirmButtonText: '确定',
