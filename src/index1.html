@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<title>云数据监控平台</title>
+    <!-- css common link -->
+    <link rel="stylesheet" href="static/css/bulma@0.7.2.min.css" />
+    <!-- <link rel="stylesheet" href="static/css/element-ui@2.4.9.css" /> -->
+    <link rel="stylesheet" href="static/js/lib/ui/buefy.css">
+    <!-- css common link end -->
+    <!-- custom scss -->
+    <link rel="stylesheet" href="static/css/app.css"/>
+
+    <!-- import Vue before Element -->
+    <!-- <script src="static/js/lib/vue@2.5.17.js"></script> -->
+    <!-- import JavaScript  elementUI-->
+    <!-- <script src="static/js/lib/element-ui@2.4.11.js"></script> -->
+    <!-- <script src="static/js/libui/muse-ui@3.0.1.js"></script> -->
+    <!-- 低版本的chrome -->
+    <!-- <script src="static/js/lib/polyfill.min.js"></script> -->
+    <!-- <script type="text/babel"></script> -->
+</head>
+
+<body>
+<div id="app">
+        <transition name="component-fade" mode="out-in">
+            <keep-alive>
+                <router-view></router-view>
+            </keep-alive>
+        </transition>
+</div>
+<script data-main="main" src="./static/js/lib/require@2.3.6.min.js"></script>
+</body>
+
+</html>

@@ -19,6 +19,9 @@
         </el-col>
       </el-row>
     </div>
+     <button class="button is-medium is-primary" @click="alert">
+            Launch alert (default)
+        </button>
     <!-- main header end -->
     <!-- main-filter -->
     <div class="main-filter">
@@ -185,6 +188,9 @@ define(["Vue","common","api" ], function(Vue,com,api) {
       })
     },
     methods: {
+      alert:function(){
+          this.$dialog.alert('Everything looks fine!')
+      },
       refresh: function() {
         this.now = new Date();
         setTimeout(this.refresh, 2000);
