@@ -20,6 +20,10 @@ requirejs.config({
         "vue-router": "js/lib/vue-router@3.0.1",
         "axios": "js/lib/axios@0.18.0.min",
         // "ELEMENT": "lib/element-ui@2.4.9",
+        // vali
+        "vuelidate": "js/block/vuelidate.min",
+        "validators": "js/block/validators.min",
+
 
         // --custom
         "common": "common/common",
@@ -35,6 +39,12 @@ requirejs.config({
     shim: {
         "Vue": {
             exports: "Vue"
+        },
+        "vuelidate":{
+             deps: ["Vue"]
+        },
+        "validators":{
+             deps: ["Vue", "vuelidate"]
         },
         "axios":{
             deps:["Vue"]
@@ -60,14 +70,20 @@ requirejs.config({
 });
 
 // api back 
-let apihost = (window.location.host.indexOf('localhost') > -1) ? "http://192.168.1.5" : "/";
+let apihost = (window.location.host.indexOf('loc') > -1) ? "https://www.easy-mock.com/mock/5c11f0c44664d341fcc05107/m" : "/";
 
-require(["Vue", "vue-router", "uRouter", "common"], function (Vue, VueRouter, uRouter, com) {
+require(["Vue", "vue-router", "uRouter", "common", "vuelidate"], function (Vue, VueRouter, uRouter, com, vuelidate) {
     // install plugs 
     Vue.use(VueRouter);
     Vue.use(ELEMENT)
     // ------- install end
  
+    Vue.use(vuelidate.default)
+    // console.log(vuelidate);
+
+    // Vue.prototype.$vali = validators
+
+
     console.log('app' + new Date().getTime());
 
     console.log(com);

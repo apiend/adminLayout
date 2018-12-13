@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" v-cloak>
 
    
     <!-- main header -->
@@ -33,8 +33,8 @@
     </div>
     <!-- main-filter end -->
     <div class="main-content">
-      <dform title="测试dform"></dform>
-      <dtable title="测试dtable"></dtable>
+      <!-- <dform title="测试dform"></dform> -->
+      <!-- <dtable title="测试dtable"></dtable> -->
       <!-- main-content -->
       <table class="table is-bordered is-striped is-fullwidth">
         <thead>
@@ -49,10 +49,10 @@
         <tbody>
 
           <tr v-for="item in tableData">
-            <th>16</th>
-            <td>{{item.name}}</td>
-            <td>11</td>
-            <td>9</td>
+            <th>{{item.proId}}</th>
+            <td>{{item.proName}}</td>
+            <td>{{item.proRunStatus}}</td>
+            <td>{{item.proOperStatus}}</td>
             <td>
                <el-button type="primary" size="mini" @click="openDialog">数据源管理</el-button>
                 <el-button type="success" size="mini" @click="openAlert">监控任务</el-button>
@@ -61,15 +61,7 @@
                 <el-button type="danger" size="mini">开启</el-button>
             </td>
           </tr>
-
-
-          <tr>
-            <th>16</th>
-            <td>38</td>
-            <td>11</td>
-            <td>9</td>
-            <td>9</td>
-          </tr>
+ 
         </tbody>
       </table>
     </div>
@@ -137,6 +129,9 @@ define(["Vue","common","api" ], function(Vue,com,api) {
    let dform = com.dForm;
    let dtable = com.dTable;
 
+
+  var that 
+
   return Vue.component("v-home", {
     components: {
       dform,
@@ -150,46 +145,36 @@ define(["Vue","common","api" ], function(Vue,com,api) {
         searchTxt: "",
         projectName:"",
         projectHost:"", 
-        tableData: [
-          {
-            date: "2016-05-02",
-            name: "王小虎",
-            address: "上海市普陀区金沙江路 1518 弄"
-          },
-          {
-            date: "2016-05-04",
-            name: "王小虎",
-            address: "上海市普陀区金沙江路 1517 弄"
-          },
-          {
-            date: "2016-05-01",
-            name: "王小虎",
-            address: "上海市普陀区金沙江路 1519 弄"
-          },
-          {
-            date: "2016-05-03",
-            name: "王小虎",
-            address: "上海市普陀区金沙江路 1516 弄"
-          }
-        ]
+        tableData: []
       };
     },
     mounted: function() {
-      this.refresh();
-      
-      
-      api.doLogin().then(res=>{
-        console.log(res);
-      }).catch(error=>{
-        console.log(error);
-      })
+      // this.refresh();
+      that = this;
 
-      
+        this.fetchData("22")
     },
     methods: {
-      refresh: function() {
-        this.now = new Date();
-        setTimeout(this.refresh, 2000);
+      /**
+       *  验证数据 
+       */
+      vail:function(){
+
+        
+      },
+      /**
+       * 搜索更新
+       */
+      doSearch:function(){
+
+          if(this.searchTxt){
+               this.fetchData(this.searchTxt)
+          }else{
+             this.$message.error('请输入搜索关键字');
+          }
+         
+
+
       },
       /**
        * 新建项目
@@ -203,13 +188,31 @@ define(["Vue","common","api" ], function(Vue,com,api) {
 
       },
       /**
+       * 获取列表数据
+       * @param str 搜索时间用
+       */
+      fetchData:function(proName){
+          let obj ={
+            proName:proName
+          }
+          api.queryProInfoList(obj).then(function(res){
+            console.log(res);
+            if(res.code == 200){
+              that.tableData = res.data.list
+            }else{
+              this.$message.error(res.msg);
+            }
+
+          })
+      },
+      /**
        * 关闭新建弹窗
        */
       createClose:function (){
         this.createVisible = false;
       },
       openDialog:function(){
-        // console.log(this.$);
+        // 
         this.$notify.error({
           title:"错误",
           message:"message"

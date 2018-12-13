@@ -39,3 +39,22 @@ require-js 后台模板
  
 http://element-cn.eleme.io/#/zh-CN/component/layout
 https://bulma.io/documentation/
+
+
+### 接口数据默认返回格式
+
+```json
+  {
+    "code":200,
+    "data":{
+
+    },
+    "msg":"ok"
+  }
+
+```
+
+
+### plugs
+
+- vuelidate  主要用来做一些验证用的. 可以自定义一些比较诡异的验证

@@ -2,7 +2,7 @@
  * 主要的路由 跳转配置
  * 
  */
-define('uRouter', ["Vue", "vue-router"], function (Vue, VueRouter) {
+define('uRouter', ["Vue", "vue-router", "common"], function (Vue, VueRouter,com) {
     'use strict';
     var asyncComp = function (componentName) {
         return function (resolve) {
@@ -20,6 +20,9 @@ define('uRouter', ["Vue", "vue-router"], function (Vue, VueRouter) {
                 path: "/home",
                 component: asyncComp("v@!../views/layout/layout"),
                 redirect: '/home/index',
+                meta: {
+                    requiresAuth: true
+                },
                 children: [{
                     path: 'index',
                     name: 'homeIndex',
@@ -108,6 +111,49 @@ define('uRouter', ["Vue", "vue-router"], function (Vue, VueRouter) {
             }
         ]
     });
+
+
+
+
+    /**
+     * 简单路由 判断  
+     */
+
+    const authInfo = com.getValue("authInfo", 'session')
+
+    routers.beforeEach((to, from, next) => {
+        if (to.matched.some(record => record.meta.requiresAuth)) {
+            // this route requires auth, check if logged in
+            // if not, redirect to login page.
+            if (!authInfo) {
+                next({
+                    path: '/login',
+                    query: {
+                        redirect: to.fullPath
+                    }
+                })
+
+            } else {
+                next()
+            }
+        } else {
+            // 当是登录状态情况下不跳转登录页面
+            if (to.path == "/login" && authInfo){
+                next({path:"/"})
+            }
+         
+            next() // 确保一定要调用 next()
+        }
+    })
+
+    /**
+     * 权限管理控制
+     */
+    routers.afterEach(() => {
+        // NProgress.done() // 结束Progress
+        console.log('afterEach');
+    })
+
 
 
     return routers

@@ -1,6 +1,6 @@
 <template>
-    <div>
-        404 未找到当前页面
+    <div  class="container">
+        404 未找到当前页面 
     </div>
 
 </template>

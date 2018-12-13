@@ -9,7 +9,7 @@ define('api', ["apiConfig"], function (service) {
     // console.log(service);
 
     var api = {
-        version: "0.0.1",
+        version: "0.0.2",
         /**
          * 登录
          */
@@ -34,7 +34,7 @@ define('api', ["apiConfig"], function (service) {
         },
 
         /**
-         * @param name  1
+         * @param name false string 用户姓名
          * 
          */
         queryUserInfoList: function (data) {
@@ -87,7 +87,7 @@ define('api', ["apiConfig"], function (service) {
                  data: data
              })
          },
-         // 项目管理接口
+         // TODO: 项目管理接口
          /**
           * 项目查询接口
           * proName false string 项目名， 可模糊
@@ -144,10 +144,10 @@ define('api', ["apiConfig"], function (service) {
                   data: data
               })
           },
-          // dataSource 数据源的管理
+          // TODO: dataSource 数据源的管理
 
           /**
-           * 查询数据源
+           *  查询数据源
            * 
            * dataSrcName false string 数据源名称
            */
