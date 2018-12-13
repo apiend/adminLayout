@@ -92,7 +92,7 @@
 define(["Vue"], function(Vue) {
   "use strict";
 
-  return Vue.component("v-home", {
+  return Vue.component("v-origin", {
     template: template,
     data: function() {
       return {

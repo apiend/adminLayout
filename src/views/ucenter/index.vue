@@ -24,7 +24,7 @@ define(["Vue", "common", "api"], function(Vue, com, api) {
     };
  
 
-    Vue.component("vue-monitor", result);
+    Vue.component("vue-ucenter", result);
 
     return result;
 

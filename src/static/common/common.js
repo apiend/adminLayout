@@ -12,9 +12,7 @@ define("common", ["Vue","axios","api", "../static/common/util"], function (Vue, 
             require([componentName], resolve);
         };
     };
-
-
-
+ 
 
     var common ={
         version: "1.0.0",

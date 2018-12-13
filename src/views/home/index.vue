@@ -183,6 +183,8 @@ define(["Vue","common","api" ], function(Vue,com,api) {
       }).catch(error=>{
         console.log(error);
       })
+
+      
     },
     methods: {
       refresh: function() {
