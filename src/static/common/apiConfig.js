@@ -45,6 +45,8 @@ define(["Vue","axios"], function(Vue,axios) {
         error => {
             console.log('err' + error) // for debug
             
+            tvue.$message.error("err " + error);
+
             return Promise.reject(error)
         }
     )

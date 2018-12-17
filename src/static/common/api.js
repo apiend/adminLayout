@@ -15,7 +15,7 @@ define('api', ["apiConfig"], function (service) {
          */
         doLogin: function (data) {
             return service({
-                url: "/cloud2.monitor/loginController/login.do",
+                url: "/loginController/login.do",
                 method: 'post',
                 data: data
             })
@@ -27,7 +27,7 @@ define('api', ["apiConfig"], function (service) {
          */ 
         updatePassword: function (data) {
             return service({
-                url: "/cloud2.monitor/loginController/updatePassword.do",
+                url: "loginController/updatePassword.do",
                 method: 'post',
                 data: data
             })
@@ -39,7 +39,7 @@ define('api', ["apiConfig"], function (service) {
          */
         queryUserInfoList: function (data) {
             return service({
-                url: "/cloud2.monitor/loginController/queryUserInfoList.do",
+                url: "userInfo/queryUserInfoList.do",
                 method: 'post',
                 data: data
             })
@@ -55,7 +55,7 @@ define('api', ["apiConfig"], function (service) {
          */
         saveUserinfo: function (data) {
             return service({
-                url: "/cloud2.monitor/userInfo/saveUserinfo.do",
+                url: "userInfo/saveUserinfo.do",
                 method: 'post',
                 data: data
             })
@@ -71,7 +71,7 @@ define('api', ["apiConfig"], function (service) {
          */
          updateUserInfo: function (data) {
              return service({
-                 url: "/cloud2.monitor/userInfo/updateUserInfo.do",
+                 url: "userInfo/updateUserInfo.do",
                  method: 'post',
                  data: data
              })
@@ -82,7 +82,7 @@ define('api', ["apiConfig"], function (service) {
           */
          deleteUserInfo: function (data) {
              return service({
-                 url: "/cloud2.monitor/userInfo/deleteUserInfo.do",
+                 url: "userInfo/deleteUserInfo.do",
                  method: 'post',
                  data: data
              })
@@ -140,6 +140,20 @@ define('api', ["apiConfig"], function (service) {
           deleteProInfo: function (data) {
               return service({
                   url: "/projectInfo/deleteProInfo.do",
+                  method: 'post',
+                  data: data
+              })
+          },
+
+          /**
+           * 改变项目的状态
+           * 
+           * proId true number 项目编号
+           * status  true number  开启或是关闭
+           */
+          changeProStatus: function (data) {
+              return service({
+                  url: "/projectInfo/changeProStatus.do",
                   method: 'post',
                   data: data
               })

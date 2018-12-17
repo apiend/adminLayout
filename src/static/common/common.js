@@ -1,4 +1,4 @@
-define("common", ["Vue", "axios", "api", "../static/common/util"], function (Vue, axios, api, util) {
+define("common", ["Vue", "axios", "api", "../static/common/util", "../static/common/filter"], function (Vue, axios, api, util) {
     'use strict';
     var WIN = window,
         DOC = document;
@@ -208,5 +208,10 @@ define("common", ["Vue", "axios", "api", "../static/common/util"], function (Vue
 
 
     console.log(api);
+
+
+
+
+
     return common;
 });

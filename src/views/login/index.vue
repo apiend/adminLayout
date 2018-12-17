@@ -44,7 +44,7 @@
 </template>
 
 <script>
-define(["Vue", "api", "validators", "common"], function(Vue, api, vali, com) {
+define(["Vue", "api", "validators", "common","MD5"], function(Vue, api, vali, com,MD5) {
   "use strict";
   //简易版校验
   const required = vali.required;
@@ -63,7 +63,6 @@ define(["Vue", "api", "validators", "common"], function(Vue, api, vali, com) {
         captcha: ""
       };
     },
-
     validations: {
       username: {
         required
@@ -90,6 +89,8 @@ define(["Vue", "api", "validators", "common"], function(Vue, api, vali, com) {
        * 登录
        */
       doLogin() {
+
+       
         // 验证数据
         if (this.vali()) {
           this.$message.error("请输入用户名与密码");
@@ -98,21 +99,28 @@ define(["Vue", "api", "validators", "common"], function(Vue, api, vali, com) {
 
         let obj = {
           userName: this.username,
-          passWord: this.password
+          passWord: MD5(this.password)
         };
         // this.$v.$touch();
         // console.log(this);
 
         api.doLogin(obj).then(function(res) {
           if (res.code == 200) {
+        
             // 登录数据存储
-            com.storeValue("authInfo", res.data, "session");
+            com.storeValue("authInfo", JSON.stringify(res.data), "session");
 
+            console.log('登录成功');
             // 登录成功 redirect
-            that.$router.push({ path: that.$route.query.redirect });
-            // this.$router.push({ path:"/" })
+            // that.$router.push({ path: that.$route.query.redirect });
+            // that.$router.push({ path:"/" })
+            // 增加了权限控制跳转有问题
+
+            window.location.reload();
+
+            
           } else {
-            this.$message.error(res.msg);
+            that.$message.error(res.msg);
           }
           // console.log(res);
         });

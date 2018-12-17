@@ -2,7 +2,7 @@
  * 主要的路由 跳转配置
  * 
  */
-define('uRouter', ["Vue", "vue-router", "common"], function (Vue, VueRouter,com) {
+define('uRouter', ["Vue", "vue-router", "common"], function (Vue, VueRouter, com) {
     'use strict';
     var asyncComp = function (componentName) {
         return function (resolve) {
@@ -34,6 +34,9 @@ define('uRouter', ["Vue", "vue-router", "common"], function (Vue, VueRouter,com)
                 path: "/origin",
                 component: asyncComp("v@!../views/layout/layout"),
                 redirect: '/origin/index',
+                meta: {
+                    requiresAuth: true
+                },
                 children: [{
                     path: 'index',
                     name: 'originIndex',
@@ -45,6 +48,9 @@ define('uRouter', ["Vue", "vue-router", "common"], function (Vue, VueRouter,com)
                 path: "/monitor",
                 component: asyncComp("v@!../views/layout/layout"),
                 redirect: '/monitor/index',
+                meta: {
+                    requiresAuth: true
+                },
                 children: [{
                     path: 'index',
                     name: 'monitorIndex',
@@ -56,6 +62,10 @@ define('uRouter', ["Vue", "vue-router", "common"], function (Vue, VueRouter,com)
                 path: "/taskAlert",
                 component: asyncComp("v@!../views/layout/layout"),
                 redirect: '/taskAlert/index',
+                meta: {
+                    requiresAuth: true
+                },
+
                 children: [{
                         path: 'index',
                         name: 'taskAlertIndex',
@@ -73,6 +83,9 @@ define('uRouter', ["Vue", "vue-router", "common"], function (Vue, VueRouter,com)
                 path: "/ucenter",
                 component: asyncComp("v@!../views/layout/layout"),
                 redirect: '/ucenter/index',
+                meta: {
+                    requiresAuth: true
+                },
                 children: [{
                     path: 'index',
                     name: 'ucenterIndex',
@@ -133,15 +146,20 @@ define('uRouter', ["Vue", "vue-router", "common"], function (Vue, VueRouter,com)
                     }
                 })
 
+                // debugger
             } else {
                 next()
             }
+
+
         } else {
             // 当是登录状态情况下不跳转登录页面
-            if (to.path == "/login" && authInfo){
-                next({path:"/"})
+            if (to.path == "/login" && authInfo) {
+                next({
+                    path: "/"
+                })
             }
-         
+
             next() // 确保一定要调用 next()
         }
     })
