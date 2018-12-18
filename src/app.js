@@ -69,13 +69,13 @@ requirejs.config({
     }
 });
 // 后台地址
-var backURL = "http://192.168.1.185:8086/cloud2.monitor";
+var backURL = "http://192.168.1.185:8080/cloud2.monitor";
 
 // mock url
 var mockURL = "https://www.easy-mock.com/mock/5c11f0c44664d341fcc05107/m"
 
 // api back  API请求的前缀
-let apihost = (window.location.host.indexOf('loc') > -1) ? mockURL : "/";
+let apihost = (window.location.host.indexOf('loc') > -1 || window.location.host.indexOf('192') > -1) ? backURL : "/cloud2.monitor";
 
 require(["Vue", "vue-router", "uRouter", "common", "vuelidate"], function (Vue, VueRouter, uRouter, com, vuelidate) {
     // install plugs 

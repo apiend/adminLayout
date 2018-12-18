@@ -316,3 +316,19 @@ body > .el-container {
   margin: 10px 0;
   text-align: right;
 }
+
+.selectDiv {
+  border-radius: 4px;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #dcdfe6;
+  box-sizing: border-box;
+  color: #606266;
+  display: inline-block;
+  font-size: inherit;
+  height: 40px;
+  line-height: 40px;
+  outline: 0;
+  padding: 0 15px;
+  width: 100%;
+}

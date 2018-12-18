@@ -56,11 +56,12 @@
             <td>{{item.proRunStatus | dStatus}}</td>
             <td>{{item.proOperStatus | dOpenStatus}}</td>
             <td>
-              <el-button type="primary" size="mini" @click="openDialog">数据源管理</el-button>
-              <el-button type="success" size="mini" @click="openAlert">监控任务</el-button>
-              <el-button type="info" size="mini">编辑</el-button>
-              <el-button type="warning" size="mini" @click="changeProStatus(item.proId,'1')">关闭</el-button>
-              <el-button type="danger" size="mini" @click="changeProStatus(item.proId,'2')">开启</el-button>
+              <el-button type="primary" size="mini" @click="goLink('/origin',{name:item.proName})">数据源管理</el-button>
+              <el-button type="success" size="mini" @click="goLink('/monitor',{name:item.proName})">监控任务</el-button>
+              <el-button type="info" size="mini" @click="editProInfo(item)">编辑</el-button>
+              <el-button type="warning" size="mini" @click="doPop(item.proId,0)" v-if="item.proOperStatus == 1 ">关闭</el-button>
+              <el-button type="danger" size="mini" @click="doPop(item.proId,1)" v-else>开启</el-button>
+              <el-button type="danger" size="mini" @click="delWarning(item.proId)" v-if="item.proOperStatus == 0 ">删除</el-button>
             </td>
           </tr>
         </tbody>
@@ -93,14 +94,16 @@
         <el-col class="mt10">
           <el-col :span="4" class="lab-tip">项目地址:</el-col>
           <el-col :span="16">
-            <el-input placeholder="请输入项目地址" v-model.trim="$v.projectHost.$model"></el-input>
+            <el-input placeholder="请输入项目地址  http://xxx.com " v-model.trim="$v.projectHost.$model"></el-input>
           </el-col>
         </el-col>
       </el-row>
 
       <span slot="footer" class="dialog-footer">
         <el-button @click="createClose">取 消</el-button>
-        <el-button type="primary" @click="submitProject">确 定</el-button>
+        <el-button type="primary" @click="updateProInfo" v-if="editProId">u确 定</el-button>
+        <el-button type="primary" @click="submitProject" v-else>c确 定</el-button>
+        
       </span>
     </el-dialog>
 
@@ -135,6 +138,8 @@ define(["Vue", "common", "api", "validators"], function(Vue, com, api, vali) {
       return {
         now: new Date(),
         closeOnClickModal: false,
+        editTip:"新建项目", 
+        editProId:"", 
         createVisible: false,
         searchTxt: "",
         projectName: "",
@@ -201,7 +206,7 @@ define(["Vue", "common", "api", "validators"], function(Vue, com, api, vali) {
       submitProject: function() {
         // 验证数据
         if (this.vali()) {
-          this.$message.error("请输入项目名称与URL地址");
+          this.$message.error("请输入项目名称与 正确的URL地址");
           return false;
         }
 
@@ -217,10 +222,7 @@ define(["Vue", "common", "api", "validators"], function(Vue, com, api, vali) {
               type: "success"
             });
 
-            that.createVisible = false;
-
-            that.cleanInput();
-
+            that.createClose()
             /**
              * 刷新列表
              */
@@ -276,14 +278,7 @@ define(["Vue", "common", "api", "validators"], function(Vue, com, api, vali) {
         this.cleanInput();
       },
 
-      /**
-       * 页面之间的跳转并传参数
-       * @param link 要跳转的链接
-       * @param param  需要传的参数
-       */
-      goLink:function(link,param){
-
-      },
+      
       /**
        * 改变项目的状态
        */
@@ -291,7 +286,7 @@ define(["Vue", "common", "api", "validators"], function(Vue, com, api, vali) {
 
         let obj ={
             proId:id,
-            status:type
+            operateStatus:type
         }
 
         api.changeProStatus(obj).then(function(res) {
@@ -314,7 +309,140 @@ define(["Vue", "common", "api", "validators"], function(Vue, com, api, vali) {
 
 
 
-      },  
+      },
+
+      /**
+       * 重新编辑
+       */
+      editProInfo:function(item){
+        that.editTip = "编辑项目";
+        that.editProId= item.proId;
+        that.projectName = item.proName;
+        that.projectHost = item.proUrl;
+
+        
+        that.createVisible =true;
+        
+
+
+      },
+      /**
+       * 增加弹窗提示
+       */
+      doPop:function(id,status){
+        let msgTip = status == 0 ? "确定要改为 关闭 吗？":"确定要改为 开启 吗？";
+ 
+
+
+
+        that.$confirm(msgTip, '操作确认', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(function(){
+
+          that.changeProStatus(id,status)
+          
+        }).catch(function(){
+
+           that.$message({
+            type: 'info',
+            message: '已取消操作'
+          }); 
+        })
+
+
+      },
+      /**
+       * 删除警告
+       */
+      delWarning:function(id){
+         that.$confirm('确定要删除该项目吗？', '操作确认', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(function(){
+          
+          that.delThePro(id)
+          
+        }).catch(function(){
+          that.$message({
+            type: 'info',
+            message: '已取消删除'
+          });          
+        });
+
+
+
+      },
+      /**
+       * 删除项目
+       */  
+      delThePro:function(id){
+        let obj = {
+          proId:id
+        }
+
+        api.deleteProInfo(obj).then(function(res){
+          if(res.code ==200){
+
+            that.$message({
+              message: "删除成功",
+              type: "success"
+            });
+            
+            that.fetchData();
+          }else{
+                  that.$message.error(res.msg);
+          }
+       
+       })
+
+
+      },
+      /**
+       * 更新项目信息
+       */
+      updateProInfo:function(){
+
+        let obj ={
+          proId:that.editProId,
+          proName:that.projectName,
+          proUrl:that.projectHost
+        }
+
+        api.updateProInfo(obj).then(function(res){
+
+            if(res.code ==200){
+
+            that.$message({
+              message: "更新成功",
+              type: "success"
+            });
+            that.createClose()
+            that.fetchData();
+          }else{
+                  that.$message.error(res.msg);
+          }
+
+        })
+
+
+      },
+      /**
+       * 页面之间的跳转并传参数
+       * @param link 要跳转的链接
+       * @param param  需要传的参数 
+       */
+      goLink:function(link,param){
+
+        console.log(link);
+        console.log(param);
+        that.$router.push({ path:link,query:param })
+
+
+      },
+ 
       openDialog: function() {
         //
         this.$notify.error({

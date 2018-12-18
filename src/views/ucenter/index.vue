@@ -57,8 +57,8 @@
             <td>{{item.phone}}</td>
             <td>{{item.wxNo}}</td>
             <td>
-              <el-button type="info" size="mini">编辑</el-button>
-              <el-button type="info" size="mini">删除</el-button>
+              <el-button type="success" size="mini" @click="editUserInfo(item)">编辑</el-button>
+              <el-button type="info" size="mini" @click="delWarning(item.id)">删除</el-button>
             </td>
           </tr>
         </tbody>
@@ -79,13 +79,13 @@
         :total="pageTotal"
       ></el-pagination>
     </div>
-
     <!-- page div end -->
 
 
 
     <!-- dialog  newCreate -->
-    <el-dialog title="新增人员" 
+    <el-dialog 
+      :title="tipTitle" 
       :visible.sync="createVisible" 
       width="50%" 
       :close-on-click-modal="closeOnClickModal"
@@ -123,7 +123,10 @@
           <el-col :span="4" class="lab-tip">密码:</el-col>
           <el-col :span="16">
             <el-input placeholder="请输入密码" type="password" v-model="$v.uPwd.$model"></el-input>
-                <div class="error" v-if="!$v.uPwd.mustBePwd && anyErr">请输入6-32位由数字、字母、下划线组成的密码</div>
+            <!-- <p v-if="editInfoId">
+              每次编辑
+            </p> -->
+            <div class="error" v-if="!$v.uPwd.mustBePwd && anyErr">请输入6-32位由数字、字母、下划线组成的密码</div>
           </el-col>
         </el-col>
 
@@ -132,7 +135,9 @@
 
       <span slot="footer" class="dialog-footer">
         <el-button @click="createClose">取 消</el-button>
-        <el-button type="primary" @click="submitProject">确 定</el-button>
+              <el-button type="primary" @click="updateInfo" v-if="editInfoId">b确 定</el-button>
+        <el-button type="primary" @click="submitProject"   v-else >a确 定</el-button>
+  
       </span>
     </el-dialog>
 
@@ -157,7 +162,8 @@ define(["Vue", "common", "api", "validators","MD5"], function(Vue, com, api, val
   }
   // 请输入6-32位由数字、字母、下划线组成的密码
   var  mustBePwd = function (value){
-    const password = /^(?![a-zA-Z]+$)[0-9A-Za-z]{6,32}$/
+    // const password = /^(?![a-zA-Z]+$)[0-9A-Za-z]{6,32}$/       //必须是 字母+数字
+    const password =/^[\w]{6,32}$/   // 字母 or 数字
     return password.test(value)
   }
   // ---
@@ -171,6 +177,8 @@ define(["Vue", "common", "api", "validators","MD5"], function(Vue, com, api, val
         closeOnClickModal: false,
         createVisible: false,
         anyErr:false, // 当有错误的时候
+        tipTitle:"新增人员",  // "新增人员"  "编辑人员"
+        editInfoId:"", // 编辑
         searchTxt: "",
         newUser:{
             name:"", // false string 用户姓名
@@ -202,7 +210,6 @@ define(["Vue", "common", "api", "validators","MD5"], function(Vue, com, api, val
         required,
         mustBePhone
       },
-
       uWXNO:{
         required
       },
@@ -263,7 +270,7 @@ define(["Vue", "common", "api", "validators","MD5"], function(Vue, com, api, val
        */
       createClose: function() {
         this.createVisible = false;
-
+        this.anyErr = false;
         this.cleanInput();
       },
       fetchData:function(Name){
@@ -306,7 +313,7 @@ define(["Vue", "common", "api", "validators","MD5"], function(Vue, com, api, val
         this.fetchData();
       },
       submitProject: function() {
-        console.log("ww");
+        // console.log("ww");
          // 验证数据
         if (this.vali()) {
           this.anyErr = true;
@@ -336,10 +343,9 @@ define(["Vue", "common", "api", "validators","MD5"], function(Vue, com, api, val
               type: "success"
             });
 
-            that.createVisible = false;
 
-            that.cleanInput();
 
+            that.createClose();
             /**
              * 刷新列表
              */
@@ -355,7 +361,120 @@ define(["Vue", "common", "api", "validators","MD5"], function(Vue, com, api, val
         
 
 
+      },
+      /**
+       * 编辑 用户 信息
+       */
+      editUserInfo:function(info){
+        console.log(info);
+
+        that.tipTitle = "编辑人员信息";
+        that.editInfoId = info.id;
+        that.uName = info.name;
+        that.uCoed = info.coed;
+        that.uPhone = info.phone;
+        that.uWXNO = info.wxNo;
+
+        that.createVisible = true;
+
+
+      },
+      /**
+       * 更新 用户数据
+       */
+      updateInfo:function(){
+
+           // 验证数据
+        if (that.vali()) {
+          that.anyErr = true;
+          that.$message.error("请输入正确的参数");
+          return false;
+        }
+
+        let obj ={
+            id:that.editInfoId,
+            name:that.uName,
+            coed:that.uCoed,
+            phone:that.uPhone,
+            wxNo:that.uWXNO,
+            pwd:MD5(that.uPwd)
+        }
+
+        api.updateUserInfo(obj).then(function(res){
+
+            if (res.code == 200) {
+            // that.tableData = res.data.list;
+            // that.pageTotal = res.data.total;
+
+             that.$message({
+              message: "编辑成功",
+              type: "success"
+            });
+
+            that.createClose();
+
+            /**
+             * 刷新列表
+             */
+
+            that.fetchData();
+
+
+          } else {
+            that.$message.error(res.msg);
+          }
+        })
+
+
+
+
+
+      },
+      /**
+       * 删除警告
+       */
+      delWarning:function(id){
+         that.$confirm('确定要删除该成员吗？', '操作确认', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          
+          that.deleteUser(id)
+          
+        }).catch(() => {
+          that.$message({
+            type: 'info',
+            message: '已取消删除'
+          });          
+        });
+      },
+      /**
+       * 删除用户
+       */
+      deleteUser:function(id){
+
+        let obj ={
+          id:id
+        }
+        api.deleteUserInfo(obj).then(function(res){
+
+          if(res.code ==200){
+
+            that.$message({
+              message: "删除成功",
+              type: "success"
+            });
+            
+            that.fetchData();
+          }else{
+                  that.$message.error(res.msg);
+          }
+
+        })
+
       }
+
     }
   };
 
