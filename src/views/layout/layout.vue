@@ -38,12 +38,12 @@
         </aside>
       </el-aside>
       <el-container>
-        <el-header>头部</el-header>
+        <el-header>
+            <user-info></user-info>
+        </el-header>
         <el-main>
             <transition name="component-fade" mode="out-in">
-              <keep-alive>
                   <router-view></router-view>
-              </keep-alive>
             </transition>
         </el-main>
       </el-container>
@@ -55,9 +55,15 @@
 <script>
 define(["Vue"], function(Vue) {
   "use strict";
-
+    const asyncComp = function (componentName) {
+        return function (resolve) {
+            require([componentName], resolve);
+        };
+    };
+    const UserInfo =asyncComp("v@!../views/layout/components/userInfo")
   return Vue.component("v-home", {
     template: template,
+      components:{UserInfo},
     data: function() {
       return {
         isShowChild01:false,

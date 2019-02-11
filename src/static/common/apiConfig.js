@@ -2,7 +2,9 @@ define(["Vue","axios"], function(Vue,axios) {
     'use strict';
     // 默认配置参数
     axios.defaults.baseURL = apihost;
- 
+	//意思是携带cookie信息,保持session的一致性
+    axios.defaults.withCredentials = true;
+
     const service = axios.create({
         // baseURL: "http://192.168.1.38:8081/cloud2.yn.oms.product", // api的base_url
         // baseURL: apiurl.productService,
@@ -40,11 +42,15 @@ define(["Vue","axios"], function(Vue,axios) {
 
     // response拦截器
     service.interceptors.response.use(
-        response => response.data,
+        response => {
+           if(response.data.code===undefined){
+                 window.location = '#/login'
+           }
+            return response.data},
 
         error => {
             console.log('err' + error) // for debug
-            
+
             tvue.$message.error("err " + error);
 
             return Promise.reject(error)

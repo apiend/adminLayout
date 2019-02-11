@@ -4,7 +4,6 @@ define(["require", "Vue"], function (require,Vue) {
     // 同级组件的通讯 简单通讯
     const Bus = new Vue()
  
-    console.log('util'+ new Date().getTime());
     let util ={
          BusEmit: function (component, action, param){
              Bus.$emit(component, action, param)
@@ -16,7 +15,7 @@ define(["require", "Vue"], function (require,Vue) {
              beforeDestroy() {
                  Bus.$off(`${this.$options.name}`, this.onBusAction)
              },
-             methods: {
+             methods: { 
                  onBusAction(action, param) {
                      console.log(`调用组件：${this.$options.name},方法：${action},参数：${param}`)
                      this[action](param)

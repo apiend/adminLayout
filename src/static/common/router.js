@@ -1,6 +1,6 @@
 /**
  * 主要的路由 跳转配置
- * 
+ *
  */
 define('uRouter', ["Vue", "vue-router", "common"], function (Vue, VueRouter, com) {
     'use strict';
@@ -12,9 +12,9 @@ define('uRouter', ["Vue", "vue-router", "common"], function (Vue, VueRouter, com
 
     var routers = new VueRouter({
         routes: [{
-                path: "",
-                redirect: "/home"
-            },
+            path: "",
+            redirect: "/home"
+        },
             //  项目管理中心
             {
                 path: "/home",
@@ -55,6 +55,14 @@ define('uRouter', ["Vue", "vue-router", "common"], function (Vue, VueRouter, com
                     path: 'index',
                     name: 'monitorIndex',
                     component: asyncComp("v@!../views/monitor/index")
+                },{
+                    path:'abnormal',
+                    name:'abnormal',
+                    component: asyncComp("v@!../views/monitor/abnormal")
+                },{
+                    path:'history',
+                    name:'history',
+                    component: asyncComp("v@!../views/monitor/history")
                 }]
             },
             //   报警任务中心
@@ -67,10 +75,10 @@ define('uRouter', ["Vue", "vue-router", "common"], function (Vue, VueRouter, com
                 },
 
                 children: [{
-                        path: 'index',
-                        name: 'taskAlertIndex',
-                        component: asyncComp("v@!../views/taskAlert/index")
-                    },
+                    path: 'index',
+                    name: 'taskAlertIndex',
+                    component: asyncComp("v@!../views/taskAlert/index")
+                },
                     {
                         path: 'group',
                         name: 'taskAlertGroup',
@@ -92,7 +100,7 @@ define('uRouter', ["Vue", "vue-router", "common"], function (Vue, VueRouter, com
                     component: asyncComp("v@!../views/ucenter/index")
                 }]
             },
-            // login   
+            // login
             {
                 path: "/login",
                 component: asyncComp("v@!../views/login/index")
@@ -126,11 +134,10 @@ define('uRouter', ["Vue", "vue-router", "common"], function (Vue, VueRouter, com
     });
 
 
-
-
     /**
-     * 简单路由 判断  
+     * 简单路由 判断
      */
+
 
     const authInfo = com.getValue("authInfo", 'session')
 
@@ -145,7 +152,6 @@ define('uRouter', ["Vue", "vue-router", "common"], function (Vue, VueRouter, com
                         redirect: to.fullPath
                     }
                 })
-
                 // debugger
             } else {
                 next()
@@ -169,9 +175,7 @@ define('uRouter', ["Vue", "vue-router", "common"], function (Vue, VueRouter, com
      */
     routers.afterEach(() => {
         // NProgress.done() // 结束Progress
-        console.log('afterEach');
     })
-
 
 
     return routers

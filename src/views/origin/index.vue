@@ -2,16 +2,16 @@
   <div class="container">
     <!-- main header -->
     <div class="main-header">
-      <el-row>
-        <el-col :span="12">
-          <nav class="breadcrumb" aria-label="breadcrumbs">
-            <ul>
-              <li>
-                <a >数据源管理</a>
-              </li>
-            </ul>
-          </nav>
-        </el-col>
+        <el-row>
+          <el-col :span="12">
+            <nav class="breadcrumb" aria-label="breadcrumbs">
+              <ul>
+                <li>
+                  <a >数据源管理</a>
+                </li>
+              </ul>
+            </nav>
+          </el-col>
 
         <!-- <el-col :span="8" :offset="4" class="text-right">
           <el-button type="primary" icon="el-icon-news el-icon-right" size="medium">新建项目</el-button>
@@ -22,11 +22,6 @@
     <!-- main-filter -->
     <div class="main-filter">
       <el-row>
-        <el-col :span="4" >
-            <select v-model="selectValue" class="selectDiv">
-              <option  v-for="item in selectList"  :value ="item.proId">{{item.proName}}</option>
-          </select>
-        </el-col>
         <el-col :span="8">
           <el-input placeholder="请输入关键字搜索项目" v-model="searchTxt"></el-input>
         </el-col>
@@ -42,11 +37,8 @@
         <thead>
           <tr>
             <th>序号</th>
-            <th>
-              所属项目
-            </th>
-            <th>
-               数据源名称
+            <th> 所属项目 </th>
+            <th> 数据源名称
             </th>
             <th>
                数据源地址
@@ -100,11 +92,6 @@ define(["Vue","common", "api"], function(Vue, com, api) {
     data: function() {
       return {
         now: new Date(),
-        selectValue:"",
-         selectList: [{
-           value:"",
-           proName:"全部项目"
-         }],
         searchTxt: "",
         pageTotal: "",
         pageSize: 10, // 每页10个
@@ -120,39 +107,14 @@ define(["Vue","common", "api"], function(Vue, com, api) {
       that = this;
 
       this.fetchData("");
-      this.fetchSelectList();
     },
     methods: {
       /**
        * 搜索更新
        */
       doSearch: function() {
-        if (this.searchTxt) {
-          this.pageNum = 1; 
+          this.pageNum = 1;
           this.fetchData(this.searchTxt);
-        } else {
-          this.$message.error("请输入搜索关键字");
-        }
-      },
-      /**
-       * 获取下拉
-       */
-      fetchSelectList:function(){
-        api.queryListForSlect().then(function(res){
-          if (res.code == 200) {
-            
-            res.data.forEach(function(item,i){
-                item.value = item.proId
-                console.log(item);
-                that.selectList.push(item)
- 
-            })
-                         
-          } else {
-            that.$message.error(res.msg);
-          }
-
-        })
       },
        /**
        * 获取列表数据
@@ -160,13 +122,11 @@ define(["Vue","common", "api"], function(Vue, com, api) {
        */
       fetchData: function(proName) {
         let obj = {
-          comId:that.selectValue,
           dataSrcName: proName,
           pageNum: that.pageNum,
           pageSize: that.pageSize
         };
         api.queryDataSrcList(obj).then(function(res) {
-          console.log(res);
           if (res.code == 200) {
             that.tableData = res.data.list;
             that.pageTotal = res.data.total;

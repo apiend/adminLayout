@@ -6,7 +6,7 @@ define(['Vue'], function (Vue) {
     'use strict';
     var WIN = window,
         DOC = document;
-    var _filter =!(function(){
+    var _filter = !(function () {
 
 
         //  注册过滤器 时间过滤器
@@ -24,22 +24,35 @@ define(['Vue'], function (Vue) {
         })
 
         //  项目 运行状态
-          Vue.filter('dStatus', function (status) {
-              //  ，1有效，2失效
-               return status == 1 ? "有效" : "失效"
-          })
-         
-          // 项目 操作状态
-          Vue.filter('dOpenStatus', function (status) {
-              //  ，1有效，2失效
-              return  status ==1 ? "开启":"关闭"
-          })
+        Vue.filter('dStatus', function (status) {
+            //  ，1有效，2失效
+            return status == 1 ? "有效" : "失效"
+        })
 
-
+        // 项目 操作状态
+        Vue.filter('dOpenStatus', function (status) {
+            //  ，1有效，2失效
+            return status == 1 ? "开启" : "关闭"
+        })
+        // 监控列表 事件状态
+        Vue.filter('eventStatus', function (status) {
+            //  ，1开启，0关闭，2已完成
+            switch (status) {
+                case 0:
+                    return '关闭'
+                    break
+                case 1:
+                    return '开启'
+                    break
+                case 2:
+                    return '已完成'
+                    break
+            }
+        })
 
 
     })()
-    
+
 
     return _filter
 

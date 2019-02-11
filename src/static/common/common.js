@@ -3,9 +3,7 @@ define("common", ["Vue", "axios", "api", "../static/common/util", "../static/com
     var WIN = window,
         DOC = document;
 
-    console.log(util);
 
-    console.log('common' + new Date().getTime());
 
     // 常用模块
 
@@ -33,7 +31,6 @@ define("common", ["Vue", "axios", "api", "../static/common/util", "../static/com
         deleteValue: deleteValue,
 
     }
-
 
 
 
@@ -207,7 +204,6 @@ define("common", ["Vue", "axios", "api", "../static/common/util", "../static/com
 
 
 
-    console.log(api);
 
 
 
