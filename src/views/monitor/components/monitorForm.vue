@@ -683,6 +683,7 @@
                  * 表单提交
                  */
                 handleSubmit: function () {
+                    
                     // 选择每小时时 开始结束时间不带分钟
                     if (this.form.monitorType == '1') {
                         this.form.stime = that.datefilter(this.form.stime)

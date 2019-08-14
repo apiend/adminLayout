@@ -69,9 +69,9 @@ requirejs.config({
     }
 });
 //后台地址 本地地址
-//var backURL = "http://192.168.1.185:8086/cloud2.monitor/";
+ var backURL = "http://192.168.1.155:8087/cloud2.monitor/";
 //线上地址
- var backURL = "http://192.168.0.131:43585/cloud2.monitor/";
+// var backURL = "http://192.168.0.131:43585/cloud2.monitor/";
 
 // mock url
 var mockURL = "https://www.easy-mock.com/mock/5c11f0c44664d341fcc05107/m"

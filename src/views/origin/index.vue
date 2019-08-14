@@ -23,7 +23,7 @@
     <div class="main-filter">
       <el-row>
         <el-col :span="8">
-          <el-input placeholder="请输入关键字搜索项目" v-model="searchTxt"></el-input>
+          <el-input placeholder="请输入关键字搜索数据源名称" v-model="searchTxt"></el-input>
         </el-col>
         <el-col :span="2">
           <el-button type="primary" icon="el-icon-search" @click="doSearch"></el-button>

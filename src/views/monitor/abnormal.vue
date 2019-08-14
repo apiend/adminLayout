@@ -70,6 +70,9 @@
                         <el-button type="warning" size="mini" @click="handleUpdate(item.id,'off')"
                                    v-if="item.operateStatus===1">关闭
                         </el-button>
+                        <el-button type="info" size="mini"
+                                   v-if="item.operateStatus===2">已完成
+                        </el-button>
                         <el-button type="danger" size="mini" @click="handleUpdate(item.id,'del')">删除
                         </el-button>
                     </td>
@@ -199,21 +202,40 @@
                  * 新建事件
                  */
                 handleAddEvent: function () {
-                    this.dialogTitle = '新建事件'
-                    that.dialogData = {
-                        projectName: this.$route.params.projectName,
-                        projectId: this.$route.params.id,
-                        taskEventName: this.$route.params.task,
-                    }
-                    that.dialogType = 'addEvent'
-                    that.addDialog = true
+                    this.$router.push({
+                        name: 'monitoringAdd',
+                        query: {
+                            projectName: this.$route.params.projectName,
+                            projectId: this.$route.params.id,
+                            taskEventName: this.$route.params.task,
+                        }
+                    })
+                    
+                    // this.dialogTitle = '新建事件'
+                    // that.dialogData = {
+                    //     projectName: this.$route.params.projectName,
+                    //     projectId: this.$route.params.id,
+                    //     taskEventName: this.$route.params.task,
+                    // }
+                    // that.dialogType = 'addEvent'
+                    // that.addDialog = true
 
                 },
                 handleEdit: function (item) {
-                    this.dialogTitle = '编辑事件'
-                    that.dialogData = item
-                    that.dialogType = 'editEvent'
-                    that.addDialog = true
+                    // this.dialogTitle = '编辑事件'
+                    // that.dialogData = item
+                    // that.dialogType = 'editEvent'
+                    // that.addDialog = true
+
+                     this.$router.push({
+                        name: 'monitoringAdd',
+                        query: {
+                            projectName: this.$route.params.projectName,
+                            projectId: this.$route.params.id,
+                            taskEventName: this.$route.params.task,
+                            id:item
+                        }
+                    })
                 },
                 /**
                  * 开启
